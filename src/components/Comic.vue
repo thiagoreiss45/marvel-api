@@ -67,16 +67,5 @@ export default {
         background: #f5f3f3 !important;
         height: 93%;
     }
-    /* .md-card {
-        padding: 28px;
-        margin: 18px;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        background: #FFF !important;
-        width: 320px;
-        vertical-align: top;
-    } */
 
 </style>

@@ -105,6 +105,16 @@ export default {
 </script>
 
 <style scoped>
+    .input{
+      height: 2.7rem;
+      font-family: 'Lato', sans-serif;
+      color: #2f2f2f;
+      font-size: 1.2rem;;
+      background: #fff;
+      padding: 0 1.6rem;
+      border-radius: 0.7rem;
+      border-width: thin;
+    }
     .md-layout{
         display: flex;
         flex-direction: row;
@@ -112,7 +122,6 @@ export default {
         max-width: 1254px;
         margin: auto;
     }
-
     .md-button{
         margin: 4% 0 4% 0;
         background-color:#ed1d24;
@@ -128,7 +137,6 @@ export default {
         flex-direction: row;
         align-content: center;
     }
-
     .search-wrapper{
         display: flex;
         justify-content: center;
