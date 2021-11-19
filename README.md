@@ -1,4 +1,5 @@
 # comics-catalog
+> Hosted on: https://vigilant-einstein-f43170.netlify.app/
 
 > A Vue.js project
 
