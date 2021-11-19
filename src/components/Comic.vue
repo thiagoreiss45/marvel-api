@@ -65,7 +65,7 @@ export default {
         display: flex;
         flex-direction: column;
         background: #f5f3f3 !important;
-        height: 92%;
+        height: 93%;
     }
     /* .md-card {
         padding: 28px;

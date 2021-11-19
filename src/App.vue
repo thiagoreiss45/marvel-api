@@ -28,6 +28,23 @@ import ApiRequests from '@/services/ApiRequests';
 import Comic from '@/components/Comic';
 import Toolbar from '@/components/Toolbar';
 
+const sort_by = (field, reverse, primer) => {
+
+  const key = primer ?
+    function(x) {
+      return primer(x['dates'][1][field])
+    } :
+    function(x) {
+      return x['dates'][1][field]
+    };
+
+  reverse = !reverse ? 1 : -1;
+
+  return function(a, b) {
+    return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+  }
+}
+
 export default {
   name: 'App',
   components: {
@@ -44,6 +61,7 @@ export default {
   created() {
     ApiRequests.getAllComics(100, comics => {
       this.quadrinhos = comics.data.data.results;
+      
     })
   },
   methods: {
@@ -54,10 +72,26 @@ export default {
       else{
         return "https://i2.wp.com/theconventioncollective.com/wp-content/uploads/2018/10/logo-Marvel-Comics-logo-hq.jpg?fit=1600%2C1200"
       }
+    },
+    sort_by: function(field, reverse, primer){
+      const key = primer ?
+        function(x) {
+          return primer(x[field])
+        } :
+        function(x) {
+          return x[field]
+        };
+
+      reverse = !reverse ? 1 : -1;
+
+      return function(a, b) {
+        return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+      }
     }
   },
   computed: {
     resultQuery(){
+      this.quadrinhos = this.quadrinhos.sort(sort_by('date', true, (a) =>  a.toUpperCase()))
       if(this.searchQuery){
       return this.quadrinhos.filter((item)=>{
         return this.searchQuery.toLowerCase().split(' ').every(v => item.title.toLowerCase().includes(v))
@@ -86,23 +120,47 @@ export default {
         font-weight: 1000;
     }
     .button-section{
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-content: center;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-content: center;
     }
 
     .search-wrapper{
-      display: flex;
-      justify-content: center;
-      /* text-align: center; */
-      margin: 12vh 1% 2%;
+        display: flex;
+        justify-content: center;
+        /* text-align: center; */
+        margin: 12vh 1% 2%;
     }
 
-
+    @media (max-width: 900px){
+        .md-size-33{
+            width: 90%;
+            max-width: 100%;
+        }
+        .md-layout{
+            display: grid;
+            grid-template-columns: 100fr 100fr;
+            justify-items: center;
+        }
+    }
+    @media (max-width: 600px){
+        .md-size-33{
+            width: 90%;
+            max-width: 100%;
+        }
+        .md-layout{
+            display: grid;
+            grid-template-columns: 100fr;
+            justify-items: center;
+        }
+        .search-wrapper{
+            margin: 12vh 1% 5%;
+        }
+    }
 
 
 </style>
