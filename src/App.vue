@@ -139,7 +139,7 @@ export default {
     @media (max-width: 900px){
         .md-size-33{
             width: 90%;
-            max-width: 100%;
+            max-width: 100% !important;
         }
         .md-layout{
             display: grid;
