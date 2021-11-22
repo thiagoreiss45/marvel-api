@@ -9,7 +9,9 @@
       <div class="md-layout-item md-size-33" v-for="(quadrinho, index) in resultQuery" :key="quadrinho.id">
         <comic v-if="index<comicsToShow"
           :titulo="quadrinho.title"
+          :preco="quadrinho.prices[0].price"
           :descricao="quadrinho.description"
+          :paginas="quadrinho.pageCount"
           :imagem="getImagem(quadrinho)"
           
         ></comic>
